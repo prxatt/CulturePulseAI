@@ -284,19 +284,27 @@ export class DataCollector {
    * @returns {Promise<Array>} Reddit trends
    */
   async collectRedditTrends() {
-    // Focused on cultural consumer trends relevant to experiential marketing
+    // Focused on Jack Morton experiential marketing client verticals
     const businessSubreddits = [
-      // Consumer Culture & Brand Experiences
-      'Marketing', 'advertising', 'branding',
-      'shopping', 'deals', 'product', 
-      'consumers', 'customerjourneys',
+      // Tech & Innovation (Apple, Microsoft, Google, etc.)
+      'technology', 'apple', 'MicrosoftTeams', 'google',
+      'futurology', 'MachineLearning', 'artificial',
       
-      // Lifestyle & Culture
-      'Productivity', 'Frugal', 'Entrepreneur',
-      'Showerthoughts', 'mildlyinteresting',
+      // Automotive (BMW, Mercedes, Ford, Tesla, etc.)
+      'TeslaModel3', 'TeslaLounge', 'BMW', 'MercedesBenz',
+      'ford', 'cars', 'automotive', 'electricvehicle',
+      
+      // Consumer Brands & Lifestyle
+      'shopping', 'deals', 'product', 'fashion',
+      'sneakers', 'watches', 'streetwear',
       
       // Events & Experiences
-      'festivals', 'concerts', 'liveevents'
+      'festivals', 'concerts', 'liveevents', 'lasvegas',
+      'sports', 'basketball', 'football',
+      
+      // Marketing & Branding
+      'Marketing', 'advertising', 'branding',
+      'socialmedia', 'productivity'
     ];
 
     console.log(`Monitoring ${businessSubreddits.length} subreddits...`);
