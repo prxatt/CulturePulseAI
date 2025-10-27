@@ -37,8 +37,9 @@ if (typeof window !== 'undefined') {
 
   // Track metric detail views
   window.addEventListener('metric:view', (event) => {
+    const detail = event.detail || {};
     window.trackCulturePulseEvent('metric_detail', {
-      metricType: event.detail.metricType
+      metricType: detail.metricType
     });
   });
 
