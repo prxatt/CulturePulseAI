@@ -564,14 +564,16 @@ body {
   padding: var(--space-8);
   text-align: center;
   color: var(--text-secondary);
-  background-color: var(--bg-elevated);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .trend-card {
-  background-color: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   min-height: 380px;

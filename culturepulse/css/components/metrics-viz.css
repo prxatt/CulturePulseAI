@@ -11,9 +11,10 @@
 }
 
 .metric-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
   padding: var(--space-6);
   display: flex;
   flex-direction: column;
@@ -22,7 +23,7 @@
 }
 
 .metric-card:hover {
-  border-color: #9ca3af;
+  border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
