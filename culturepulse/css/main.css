@@ -100,7 +100,7 @@ ol {
 h1, h2, h3, h4, h5, h6 {
   font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 h1 {
