@@ -1,0 +1,139 @@
+/* ============================================
+   ENHANCED BRAND FIT ANALYSIS
+   Smart, comprehensive, cohesive design
+   ============================================ */
+
+.brand-fit-section {
+  margin-bottom: var(--space-8);
+}
+
+.brand-fit-section__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: var(--space-6);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.brand-fit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.brand-fit-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: var(--space-6);
+  transition: all 200ms ease;
+}
+
+.brand-fit-card:hover {
+  border-color: #d1d5db;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.brand-fit-card--perfect {
+  border-color: #10b981;
+}
+
+.brand-fit-card--perfect:hover {
+  border-color: #059669;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+}
+
+.brand-fit-card--good {
+  border-color: #f59e0b;
+}
+
+.brand-fit-card--good:hover {
+  border-color: #d97706;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
+}
+
+.brand-fit-card--avoid {
+  border-color: #ef4444;
+}
+
+.brand-fit-card--avoid:hover {
+  border-color: #dc2626;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.2);
+}
+
+.brand-fit-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.brand-fit-icon {
+  font-size: 20px;
+  font-weight: 700;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.brand-fit-card--perfect .brand-fit-icon {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.brand-fit-card--good .brand-fit-icon {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.brand-fit-card--avoid .brand-fit-icon {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.brand-fit-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.brand-fit-brands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.brand-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.brand-fit-card--perfect .brand-tag {
+  background: rgba(16, 185, 129, 0.05);
+  border-color: rgba(16, 185, 129, 0.2);
+  color: #059669;
+}
+
+.brand-fit-card--good .brand-tag {
+  background: rgba(245, 158, 11, 0.05);
+  border-color: rgba(245, 158, 11, 0.2);
+  color: #b45309;
+}
+
+.brand-fit-card--avoid .brand-tag {
+  background: rgba(239, 68, 68, 0.05);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #991b1b;
+}
+

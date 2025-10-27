@@ -1,0 +1,237 @@
+/* ============================================
+   METRIC DETAIL MODAL
+   Expandable detailed charts for each metric
+   ============================================ */
+
+.metric-detail-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.metric-detail-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.metric-detail-content {
+  background: white;
+  border-radius: 8px;
+  width: 95%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.95) translateY(20px);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.metric-detail-modal.active .metric-detail-content {
+  transform: scale(1) translateY(0);
+}
+
+.metric-detail-header {
+  padding: var(--space-6);
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metric-detail-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.metric-detail-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #6b7280;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 150ms ease;
+}
+
+.metric-detail-close:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.metric-detail-body {
+  padding: var(--space-8);
+}
+
+/* Large detailed chart */
+.detailed-chart {
+  margin-bottom: var(--space-8);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-4);
+}
+
+.chart-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chart-subtitle {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* Detailed chart wrapper */
+.detailed-chart {
+  margin-top: var(--space-6);
+}
+
+/* Bar chart */
+.bar-chart {
+  min-height: 200px;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: var(--space-6);
+  background: #f9fafb;
+  border-radius: 4px;
+  margin-top: var(--space-4);
+}
+
+.line-chart-svg,
+.area-chart-svg {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  background: #f9fafb;
+  border-radius: 4px;
+}
+
+.bar-chart-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+  justify-content: flex-end;
+}
+
+.bar-chart-bar {
+  width: 100%;
+  max-width: 36px;
+  min-width: 24px;
+  background: #3b82f6;
+  border-radius: 3px 3px 0 0;
+  min-height: 4px;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bar-chart-bar:hover {
+  background: #2563eb;
+  transform: scaleY(1.05);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+.bar-chart-label {
+  font-size: 10px;
+  color: #9ca3af;
+  text-align: center;
+  margin-top: var(--space-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.bar-chart-value {
+  font-size: 10px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: var(--space-2);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+}
+
+/* Distribution chart */
+.distribution-chart {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.distribution-item {
+  flex: 1;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: var(--space-4);
+  text-align: center;
+}
+
+.distribution-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: var(--space-1);
+}
+
+.distribution-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Stats grid */
+.metric-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.stat-item {
+  padding: var(--space-4);
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+}
+
+.stat-item-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: var(--space-1);
+}
+
+.stat-item-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Close button inside metrics */
+.metric-card {
+  cursor: pointer;
+}
+

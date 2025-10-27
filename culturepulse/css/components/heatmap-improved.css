@@ -1,0 +1,85 @@
+/* ============================================
+   HEATMAP IMPROVED STYLING
+   Cleaner, more readable - Notion-style pills
+   ============================================ */
+
+.heatmap-grid-clean {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.category-pill {
+  padding: 10px 16px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-left: 3px solid #6b7280; /* Default color, will be overridden by inline styles */
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  margin: 0;
+}
+
+.category-pill:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.category-pill--active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.category-pill--active .category-pill__label {
+  color: white;
+}
+
+.category-pill__label {
+  font-size: var(--text-sm);
+}
+
+.category-pill__count {
+  background: #e5e7eb;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Inter', -apple-system, sans-serif;
+  line-height: 1;
+}
+
+.category-pill--active .category-pill__count {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.heatmap-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  transition: all 0.2s ease;
+}
+
+/* Selected state for category filtering */
+.heatmap-cell.selected,
+.heatmap-cell-clean.selected {
+  border: 3px solid var(--pulse-primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+  transform: scale(1.05);
+}
+

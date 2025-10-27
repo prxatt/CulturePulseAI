@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CulturePulse AI - Real-time cultural intelligence dashboard for experiential marketing. Track emerging trends 3-6 months before they peak.">
+    <meta name="keywords" content="cultural intelligence, trend forecasting, experiential marketing, marketing trends, culture analysis">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CulturePulse AI - Cultural Intelligence Platform">
+    <meta property="og:description" content="Real-time cultural intelligence for experiential marketing">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CulturePulse AI - Cultural Intelligence Platform">
+    <meta name="twitter:description" content="Real-time cultural intelligence for experiential marketing">
+    <meta name="twitter:image" content="assets/images/og-image.jpg">
+    
+    <title>CulturePulse AI - Cultural Intelligence Dashboard</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css?v=65.0">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <div class="logo-icon">CP</div>
+                <span class="logo-text">CulturePulse AI</span>
+            </div>
+            
+            <nav class="header__nav">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">Dashboard</a>
+                <a href="#saved-trends" class="nav-link" data-section="saved">Saved Trends</a>
+                <a href="#reports" class="nav-link" data-section="reports">Reports</a>
+                <a href="#settings" class="nav-link" data-section="settings">Settings</a>
+            </nav>
+            
+            <div class="header__actions">
+                <input type="search" class="search-bar" id="search-bar" placeholder="Search trends, brands, categories..." aria-label="Search trends">
+                <div class="user-menu">
+                    <span class="user-avatar">@</span>
+                    <span class="user-name" id="user-name">User</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <!-- Dashboard Section -->
+        <div id="section-dashboard">
+        <!-- Stats Overview Section -->
+        <section class="stats-overview" id="stats-overview">
+            <div class="metrics-viz-container">
+                <div class="metric-card" data-metric="trends">
+                    <div class="metric-card__header">
+                        <div class="metric-card__label">Active Trends</div>
+                        <span class="trend-indicator">
+                            <span class="trend-indicator__icon">↑</span>
+                            <span>+12%</span>
+                        </span>
+                    </div>
+                    <div class="metric-card__number" id="stat-trends">147</div>
+                    <div class="metric-card__visualization">
+                        <div class="mini-chart">
+                            <div class="mini-chart__bar" style="height: 85%"></div>
+                            <div class="mini-chart__bar" style="height: 92%"></div>
+                            <div class="mini-chart__bar" style="height: 78%"></div>
+                            <div class="mini-chart__bar" style="height: 95%"></div>
+                            <div class="mini-chart__bar" style="height: 88%"></div>
+                            <div class="mini-chart__bar" style="height: 100%"></div>
+                            <div class="mini-chart__bar" style="height: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-card" data-metric="emerging">
+                    <div class="metric-card__header">
+                        <div class="metric-card__label">Emerging 72h</div>
+                        <span class="trend-indicator trend-indicator--down">
+                            <span class="trend-indicator__icon">↓</span>
+                            <span>-3%</span>
+                        </span>
+                    </div>
+                    <div class="metric-card__number" id="stat-emerging">31</div>
+                    <div class="metric-card__visualization">
+                        <div class="mini-chart">
+                            <div class="mini-chart__bar" style="height: 100%"></div>
+                            <div class="mini-chart__bar" style="height: 92%"></div>
+                            <div class="mini-chart__bar" style="height: 85%"></div>
+                            <div class="mini-chart__bar" style="height: 78%"></div>
+                            <div class="mini-chart__bar" style="height: 75%"></div>
+                            <div class="mini-chart__bar" style="height: 70%"></div>
+                            <div class="mini-chart__bar" style="height: 68%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-card" data-metric="accuracy">
+                    <div class="metric-card__header">
+                        <div class="metric-card__label">Accuracy</div>
+                        <span class="trend-indicator">
+                            <span class="trend-indicator__icon">↑</span>
+                            <span>+2%</span>
+                        </span>
+                    </div>
+                    <div class="metric-card__number" id="stat-accuracy">89%</div>
+                    <div class="metric-card__visualization">
+                        <div class="mini-chart">
+                            <div class="mini-chart__bar" style="height: 82%"></div>
+                            <div class="mini-chart__bar" style="height: 84%"></div>
+                            <div class="mini-chart__bar" style="height: 85%"></div>
+                            <div class="mini-chart__bar" style="height: 86%"></div>
+                            <div class="mini-chart__bar" style="height: 87%"></div>
+                            <div class="mini-chart__bar" style="height: 88%"></div>
+                            <div class="mini-chart__bar" style="height: 89%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-card" data-metric="datapoints">
+                    <div class="metric-card__header">
+                        <div class="metric-card__label">Data Points</div>
+                        <span class="trend-indicator">
+                            <span class="trend-indicator__icon">↑</span>
+                            <span>+5M</span>
+                        </span>
+                    </div>
+                    <div class="metric-card__number" id="stat-datapoints">7.3M</div>
+                    <div class="metric-card__visualization">
+                        <div class="mini-chart">
+                            <div class="mini-chart__bar" style="height: 62%"></div>
+                            <div class="mini-chart__bar" style="height: 68%"></div>
+                            <div class="mini-chart__bar" style="height: 72%"></div>
+                            <div class="mini-chart__bar" style="height: 75%"></div>
+                            <div class="mini-chart__bar" style="height: 82%"></div>
+                            <div class="mini-chart__bar" style="height: 88%"></div>
+                            <div class="mini-chart__bar" style="height: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Heatmap -->
+        <section class="category-select-section" id="category-select">
+            <div class="category-select-container">
+                <div class="heatmap-wrapper">
+                    <h3 class="heatmap-title">Trend Categories</h3>
+                    <div class="heatmap-grid-clean" id="category-heatmap">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trend Grid Section -->
+        <section class="trends-section" id="trends-section">
+            <div class="trends-container">
+                <div class="trends-header">
+                    <h2 class="section-title">Trends</h2>
+                    <div class="trends-count" id="trends-count">0 trends</div>
+                </div>
+                
+                <div class="trends-grid" id="trends-grid">
+                    <!-- Trend cards will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+        </div>
+        
+        <!-- Saved Trends Section -->
+        <div id="section-saved" style="display: none;">
+            <div class="section-container">
+                <h1 class="section-title">Saved Trends</h1>
+                <div class="section-content">
+                    <p>Your saved trends will appear here.</p>
+                    <div class="empty-state">
+                        <div class="empty-state__icon"></div>
+                        <h2>No saved trends yet</h2>
+                        <p>Save trends you want to reference later by clicking the save button on any trend card.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Reports Section -->
+        <div id="section-reports" style="display: none;">
+            <div class="section-container">
+                <h1 class="section-title">Reports</h1>
+                <div class="section-content">
+                    <p>Generate and download trend reports.</p>
+                    <div class="empty-state">
+                        <div class="empty-state__icon"></div>
+                        <h2>No reports generated yet</h2>
+                        <p>Generate custom trend reports from the dashboard to share with your team.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Settings Section -->
+        <div id="section-settings" style="display: none;">
+            <div class="section-container">
+                <h1 class="section-title">Settings</h1>
+                <div class="section-content">
+                    <div class="settings-section">
+                        <h3>Preferences</h3>
+                        <p>Configure your dashboard preferences and notification settings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer__container">
+            <div class="footer__content">
+                <p class="footer__text">&copy; 2025 CulturePulse AI. Built for Jack Morton.</p>
+                <p class="footer__text">Cultural intelligence for experiential marketing.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Debug script -->
+    <script>
+      // Log when DOM is ready
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM loaded');
+        console.log('Main container:', document.getElementById('main'));
+        console.log('Trends grid:', document.getElementById('trends-grid'));
+        
+        // Check if elements exist
+        const requiredElements = ['main', 'trends-grid', 'stats-overview', 'heatmap-grid'];
+        requiredElements.forEach(id => {
+          const el = document.getElementById(id);
+          console.log(`${id}:`, el ? '✓' : '✗ MISSING');
+        });
+      });
+      
+      // Log script errors
+      window.addEventListener('error', (e) => {
+        console.error('Script error:', e.message, e.filename, e.lineno);
+      });
+      
+      // Log module errors
+      window.addEventListener('unhandledrejection', (e) => {
+        console.error('Module error:', e.reason);
+      });
+    </script>
+    
+    <!-- Main application script -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
+
