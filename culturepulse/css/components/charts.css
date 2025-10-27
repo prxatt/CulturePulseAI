@@ -6,7 +6,7 @@
 
 /* Line Chart Component */
 .line-chart-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
@@ -68,7 +68,7 @@
 
 /* Bar Chart Component */
 .bar-chart-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
@@ -192,7 +192,7 @@
 
 /* Trend Timeline */
 .timeline-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
@@ -239,7 +239,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border: 3px solid var(--pulse-primary);
   display: flex;
   align-items: center;
@@ -335,7 +335,7 @@
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-4);
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
 }
@@ -382,7 +382,7 @@
 
 /* Comparison Charts */
 .comparison-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
@@ -435,7 +435,7 @@
 
 /* Category Breakdown Card */
 .category-breakdown-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
@@ -458,13 +458,13 @@
 .category-breakdown__label {
   font-size: var(--text-lg);
   font-weight: var(--weight-bold);
-  color: #111827;
+  color: var(--text-primary);
   line-height: 1.3;
 }
 
 .category-breakdown__bar {
   height: 56px;
-  background: #f3f4f6;
+  background: var(--bg-overlay);
   border-radius: var(--radius-md);
   flex: 1;
   overflow: hidden;
@@ -473,7 +473,7 @@
 
 .category-breakdown__fill {
   height: 100%;
-  background: #3b82f6;
+  background: rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-md);
 }
 
@@ -481,7 +481,7 @@
   font-family: var(--font-mono);
   font-weight: var(--weight-black);
   font-size: var(--text-2xl);
-  color: #111827;
+  color: var(--text-primary);
   text-align: right;
 }
 

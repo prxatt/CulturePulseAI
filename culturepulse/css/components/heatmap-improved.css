@@ -12,7 +12,7 @@
 
 .category-pill {
   padding: 10px 16px;
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid #e5e7eb;
   border-left: 3px solid #6b7280; /* Default color, will be overridden by inline styles */
   border-radius: 8px;
@@ -29,18 +29,18 @@
 }
 
 .category-pill:hover {
-  background: #f9fafb;
+  background: var(--bg-overlay);
   border-color: #d1d5db;
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .category-pill--active {
-  background: #3b82f6;
-  border-color: #3b82f6;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
   color: white;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 .category-pill--active .category-pill__label {
@@ -79,7 +79,7 @@
 .heatmap-cell.selected,
 .heatmap-cell-clean.selected {
   border: 3px solid var(--pulse-primary);
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15);
   transform: scale(1.05);
 }
 

@@ -16,7 +16,7 @@
 }
 
 .lifecycle-chart__graph {
-  background: #f9fafb;
+  background: var(--bg-overlay);
   border: 1px solid #e5e7eb;
   border-radius: 6px;
   height: 180px;
@@ -81,7 +81,7 @@
   letter-spacing: 0.2px;
   white-space: nowrap;
   padding: 1px 3px;
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 2px;
   border: 1px solid #e5e7eb;
   line-height: 1;
@@ -143,25 +143,25 @@
 .lifecycle-indicator--projected .lifecycle-indicator-dot {
   width: 18px;
   height: 18px;
-  background: #3b82f6;
+  background: rgba(255, 255, 255, 0.4);
   border: 3px solid white;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3), 0 0 0 6px rgba(59, 130, 246, 0.15);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2), 0 0 0 6px rgba(255, 255, 255, 0.1);
   animation: pulse-projected 2s infinite;
 }
 
 @keyframes pulse-projected {
   0%, 100% {
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3), 0 0 0 6px rgba(59, 130, 246, 0.15);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2), 0 0 0 6px rgba(255, 255, 255, 0.1);
   }
   50% {
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4), 0 0 0 8px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 0 0 0 8px rgba(255, 255, 255, 0.15);
   }
 }
 
 .lifecycle-indicator--projected .lifecycle-indicator-label {
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
-  border-color: #3b82f6;
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .lifecycle-indicator-dot {
@@ -189,7 +189,7 @@
 }
 
 .lifecycle-info-item {
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: var(--space-5);

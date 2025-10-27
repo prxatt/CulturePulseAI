@@ -1,7 +1,8 @@
 /**
- * CULTUREPULSE AI - META-FOCUSED TRENDS
- * Broad cultural movements in tech/AI/workplace culture
- * Applying experiential activations for Jack Morton client opportunities
+ * COUNTERPULSE - JACK MORTON CLIENT TRENDS
+ * Cultural intelligence trends curated for Jack Morton clients
+ * Focused on Meta, tech companies, and major corporate brands
+ * Applying experiential activations for Jack Morton opportunities
  */
 
 export const SAMPLE_TRENDS = [
@@ -931,6 +932,106 @@ export const SAMPLE_TRENDS = [
     lastUpdated: '2025-01-15',
     timestamp: Date.now(),
     source: 'Functional Beverage Market Research, Consumption Trends',
+    savedBy: [],
+    sharedCount: 0
+  },
+  
+  {
+    id: 'trend_009',
+    title: 'Cortado Girl - Coffee Culture Meets Quiet Luxury',
+    category: 'Lifestyle',
+    subcategories: ['Beverages', 'Cultural Identity', 'Digital Culture'],
+    
+    velocityScore: 485,
+    currentPhase: 'early_adopters',
+    peakExpected: '3-6 weeks',
+    confidence: 92,
+    
+    primaryAudience: {
+      gender: 'Mixed',
+      ageRange: '22-35',
+      demographics: 'Gen Z professionals, remote workers, cultural trendsetters',
+      psychographics: 'Aesthetic-driven, lifestyle-curated, anti-corporate, authenticity-seeking'
+    },
+    
+    sources: [
+      { platform: 'TikTok', mentions: 289000, growth: '+1,240%' },
+      { platform: 'Instagram', mentions: 156000, growth: '+890%' },
+      { platform: 'Twitter/X', mentions: 124000, growth: '+765%' }
+    ],
+    
+    hotspots: ['NYC', 'LA', 'SF', 'Austin', 'Chicago', 'Miami'],
+    
+    shortDescription: '"Cortado Girl" aesthetic sweeping Gen Z—micro-coffee drink embodies quiet luxury, European sophistication, anti-corporate messaging. Smaller beverage = more sophisticated. TikTok/Instagram flooded with cortado content (450M+ views). Gen Z rejecting grande lattes for artisanal micro-beverages. Coffee as identity signal.',
+    
+    culturalAnalysis: {
+      origin: 'European coffee culture meets Gen Z minimalism. Cortado (equal parts espresso and steamed milk) symbolizes sophisticated restraint vs American excess. TikTok creator @cortado.girl sparked movement—perfect balance of understated luxury and relatable accessibility.',
+      whyNow: 'Quiet luxury trend (Gwyneth Paltrow court fashion, "stealth wealth") resonates with Gen Z. Economic uncertainty = value signifiers change from spending to curated lifestyle. Anti-corporate sentiment (Starbucks Grande = overpriced excess). Coffee shops = third place for remote workers.',
+      psychology: [
+        'Size = sophistication (opposite of American "bigger is better")',
+        'European aesthetic = aspirational but accessible',
+        'Micro-beverage = intentionality and control',
+        'Coffee as daily ritual and identity marker',
+        'Quiet rebellion against corporate coffee culture',
+        'Shared experience creates micro-community'
+      ],
+      subcultureMap: {
+        influences: ['Quiet Luxury', 'European Cafe Culture', 'Minimalism', 'Digital Nomad Culture'],
+        related: ['It Girl', 'Cottagecore', 'Clean Girl Aesthetic', 'Friluftsliv (Norwegian outdoor living)']
+      }
+    },
+    
+    brandFit: [
+      {
+        brand: 'Meta',
+        fitScore: 95,
+        reasoning: 'Perfect overlap with Meta employee culture. Tech workers embrace coffee culture. Cortado aesthetic aligns with Meta design language (clean, intentional, sophisticated). Opportunity: Meta-branded espresso bars at campuses, cortado-focused events, curated coffee experiences.',
+        opportunity: 'Experiential activation: "Meta Cortado Moments" events at campus locations featuring local roasters, curated coffee experiences, and employee connection spaces. Perfect for Gen Z recruitment (aesthetic matters).',
+        expectedROI: 'High retention signal, cultural relevance, recruitment differentiator, employee satisfaction boost'
+      }
+    ],
+    
+    jackMortonApplications: {
+      clients: [
+        {
+          name: 'Meta',
+          positioning: 'Curated culture that employees actually live',
+          keyMessage: 'Meta gets it—coffee culture is culture culture',
+          differentiator: 'First tech company to activate coffee culture as employee experience and recruitment tool. Cortado = sophistication + accessibility Meta embodies.',
+          pitchPoints: [
+            'Meta campus espresso programs (cortado-focused menu curation)',
+            '\"Cortado Conversations\" intimate employee connection events',
+            'Coffee culture as recruitment differentiator for Gen Z talent',
+            'Brand partnership with local roasters for exclusive employee events',
+            'Instagram-worthy coffee experiences = organic employee advocacy',
+            'Cultural trend Meta can own (sophisticated, intentional, community-focused)'
+          ],
+          concepts: [
+            {
+              concept: 'Meta Cortado Moments Program',
+              description: 'Campus-wide coffee culture activation: curated cortado bars, intimate conversation spaces, partnership with local artisanal roasters',
+              targetAudience: 'Meta employees, Gen Z recruits, campus visitors',
+              format: 'Ongoing campus program + quarterly curated events',
+              elements: [
+                'Designated "Cortado Corners" on campus for connection',
+                'Partnership with 3-5 local artisanal roasters',
+                'Monthly "Cortado Conversations" intimate events',
+                'Custom Meta-branded cortado cups and aesthetic',
+                'Employee barista workshops and coffee education',
+                'Instagram-optimized coffee experience design',
+                'QR code integration for coffee ordering and social sharing'
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    
+    tags: ['Food', 'Cultural Identity', 'Gen Z', 'Coffee', 'Digital Culture', 'Meta'],
+    addedDate: '2025-01-16',
+    lastUpdated: '2025-01-23',
+    timestamp: Date.now(),
+    source: 'TikTok Cultural Trends, Coffee Market Research, Gen Z Behavior Studies',
     savedBy: [],
     sharedCount: 0
   }

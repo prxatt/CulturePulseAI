@@ -1428,6 +1428,24 @@ class CulturePulseApp {
     
     modal.innerHTML = this.renderMetricDetailModal(metricData);
     
+    // Setup click handlers for trend chart items
+    setTimeout(() => {
+      const trendItems = modal.querySelectorAll('.trend-bar-item[data-trend-id]');
+      trendItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          const trendId = item.getAttribute('data-trend-id');
+          const trend = window.currentChartTrends?.find(t => t.id === trendId);
+          if (trend) {
+            this.hideMetricDetail();
+            // Delay opening trend modal slightly
+            setTimeout(() => {
+              this.openModal(trend, 'overview');
+            }, 300);
+          }
+        });
+      });
+    }, 50);
+    
     // Show modal
     setTimeout(() => {
       modal.classList.add('active');
@@ -1704,37 +1722,61 @@ class CulturePulseApp {
     const chartData = trends.map(t => t && t.velocityScore ? t.velocityScore : 0);
     const maxValue = Math.max(...chartData);
     
+    // Store trends for click handlers
+    window.currentChartTrends = trends;
+    
     return `
       <div class="detailed-chart">
         <div class="chart-header">
           <div class="chart-title">Top ${trends.length} Trends by Velocity</div>
           <div class="chart-subtitle">Growth rate in last 15 days</div>
         </div>
-        <div class="top-trends-chart">
+        <div class="top-trends-chart" data-trend-chart>
           ${trends.map((trend, index) => {
             if (!trend) return '';
             const velocity = trend.velocityScore || 0;
             const heightPercent = maxValue > 0 ? (velocity / maxValue) * 100 : 0;
             const isDeclining = false; // velocityScore is always positive
             
+            const trendId = trend.id || 'unknown';
+            const phaseMap = {
+      'innovation': 'Innovation',
+      'early_adopters': 'Early Adopters',
+      'early_majority': 'Early Majority',
+      'late_majority': 'Late Majority',
+      'laggards': 'Laggards'
+    };
+    const phaseLabel = phaseMap[trend.currentPhase] || trend.currentPhase;
+            const confidence = trend.confidence || 85;
+            const platforms = trend.sources ? trend.sources.map(s => s.platform).join(', ') : 'Multiple';
+            
             return `
-              <div class="trend-bar-item" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;" 
+              <div class="trend-bar-item" data-trend-id="${trendId}" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;" 
                    onmouseenter="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';"
-                   onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='none';"
-                   onclick="window.app && window.app.openModal && window.app.openModal(${JSON.stringify(trend).replace(/"/g, '&quot;')}, 'overview')">
+                   onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
                 <div class="trend-bar-info">
                   <div class="trend-bar-title">${trend.title || 'Unknown'}</div>
                   <div class="trend-bar-meta">
                     <span class="trend-category">${trend.category || 'Other'}</span>
                     <span class="trend-velocity">
-                      ↑ ${velocity}%
+                      ↑ ${velocity}% growth
                     </span>
+                    <span class="trend-confidence">
+                      ${confidence}% confidence
+                    </span>
+                  </div>
+                  <div class="trend-bar-details">
+                    <span class="trend-phase">Phase: ${phaseLabel}</span>
+                    <span class="trend-platforms">Platforms: ${platforms}</span>
+                    <span class="trend-peak">Peak in: ${trend.peakExpected}</span>
                   </div>
                 </div>
                 <div class="trend-bar-visual">
                   <div class="trend-bar-fill" 
-                       style="width: ${heightPercent}%">
+                       style="width: ${heightPercent}%"
+                       title="Velocity: ${velocity}%">
                   </div>
+                  <div class="trend-bar-value">${velocity}</div>
                 </div>
               </div>
             `;
@@ -1882,7 +1924,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.app = new CulturePulseApp();
   window.app.init();
   
-  console.log('CulturePulse AI Dashboard Ready');
+      console.log('CulturePulse AI Dashboard Ready');
 });
 
 // Make app globally available for debugging

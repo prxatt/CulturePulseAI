@@ -14,15 +14,15 @@
      PRIMARY COLOR SYSTEM
      ============================================ */
   
-  /* Primary Palette - Clean Blue for Data Intelligence */
-  --pulse-primary: #3b82f6;
-  --pulse-primary-light: #60a5fa;
-  --pulse-primary-dark: #2563eb;
+  /* Primary Palette - Clean White for Glass UI */
+  --pulse-primary: rgba(255, 255, 255, 0.4);
+  --pulse-primary-light: rgba(255, 255, 255, 0.6);
+  --pulse-primary-dark: rgba(255, 255, 255, 0.3);
   
-  /* Accent Palette - Vibrant for Insights */
-  --pulse-accent: #06b6d4;
-  --pulse-accent-light: #22d3ee;
-  --pulse-accent-dark: #0891b2;
+  /* Accent Palette - White for Glass */
+  --pulse-accent: rgba(255, 255, 255, 0.5);
+  --pulse-accent-light: rgba(255, 255, 255, 0.7);
+  --pulse-accent-dark: rgba(255, 255, 255, 0.4);
   
   /* ============================================
      SEMANTIC COLOR SYSTEM
@@ -64,7 +64,7 @@
   --border-subtle: rgba(148, 163, 184, 0.1);
   --border-default: rgba(148, 163, 184, 0.2);
   --border-strong: rgba(148, 163, 184, 0.3);
-  --border-focus: rgba(99, 102, 241, 0.5);      /* Focus ring color */
+  --border-focus: rgba(255, 255, 255, 0.3);      /* Focus ring color */
   
   /* ============================================
      TYPOGRAPHY SCALE
@@ -152,7 +152,7 @@
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   
   /* Colored shadows for interactive elements */
-  --shadow-primary: 0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -2px rgba(99, 102, 241, 0.2);
+  --shadow-primary: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
   --shadow-accent: 0 10px 15px -3px rgba(236, 72, 153, 0.3), 0 4px 6px -2px rgba(236, 72, 153, 0.2);
   
   /* ============================================

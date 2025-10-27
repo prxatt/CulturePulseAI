@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CulturePulse AI - Real-time cultural intelligence dashboard for experiential marketing. Track emerging trends 3-6 months before they peak.">
-    <meta name="keywords" content="cultural intelligence, trend forecasting, experiential marketing, marketing trends, culture analysis">
+    <meta name="description" content="CulturePulse - Real-time cultural intelligence dashboard for Jack Morton. Track emerging trends 3-6 months before they peak.">
+    <meta name="keywords" content="cultural intelligence, trend forecasting, experiential marketing, Jack Morton, marketing trends, culture analysis">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="CulturePulse AI - Cultural Intelligence Platform">
-    <meta property="og:description" content="Real-time cultural intelligence for experiential marketing">
+    <meta property="og:title" content="CulturePulse - Cultural Intelligence Platform for Jack Morton">
+    <meta property="og:description" content="Real-time cultural intelligence for Jack Morton clients">
     <meta property="og:image" content="assets/images/og-image.jpg">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CulturePulse AI - Cultural Intelligence Platform">
-    <meta name="twitter:description" content="Real-time cultural intelligence for experiential marketing">
+    <meta name="twitter:title" content="CulturePulse - Cultural Intelligence Platform for Jack Morton">
+    <meta name="twitter:description" content="Real-time cultural intelligence for Jack Morton clients">
     <meta name="twitter:image" content="assets/images/og-image.jpg">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
-    <title>CulturePulse AI - Cultural Intelligence Dashboard</title>
+    <title>CulturePulse - Cultural Intelligence Dashboard | Jack Morton</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="css/main.css?v=65.0">
 </head>
 <body>
+    <!-- Vanta animated background -->
+    <div id="vanta-background"></div>
+    
     <!-- Header -->
     <header class="header" id="header">
         <div class="header__container">
@@ -51,7 +54,7 @@
                 <input type="search" class="search-bar" id="search-bar" placeholder="Search trends, brands, categories..." aria-label="Search trends">
                 <div class="user-menu">
                     <span class="user-avatar">@</span>
-                    <span class="user-name" id="user-name">User</span>
+                    <span class="user-name" id="user-name">Jack Morton</span>
                 </div>
             </div>
         </div>
@@ -235,6 +238,12 @@
         </div>
     </footer>
 
+    <!-- Three.js (must load BEFORE Vanta) -->
+    <script src="https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js"></script>
+    
+    <!-- Vanta.js for animated background -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+    
     <!-- Scripts -->
     <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -253,6 +262,32 @@
           const el = document.getElementById(id);
           console.log(`${id}:`, el ? '✓' : '✗ MISSING');
         });
+        
+        // Initialize Vanta animated background
+        // Wait for THREE to load
+        setTimeout(() => {
+          if (typeof VANTA !== 'undefined' && typeof THREE !== 'undefined') {
+            VANTA.FOG({
+              el: '#vanta-background',
+              THREE: THREE,
+              mouseControls: true,
+              touchControls: true,
+              gyroControls: false,
+              minHeight: 200.00,
+              minWidth: 200.00,
+              highlightColor: 0x1a1a1a,
+              midColor: 0x0a0a0a,
+              lowlightColor: 0x000000,
+              baseColor: 0x000000,
+              blurFactor: 0.6,
+              speed: 1.5,
+              zoom: 0.9
+            });
+            console.log('Vanta animated background initialized');
+          } else {
+            console.warn('Vanta.js or THREE.js not loaded');
+          }
+        }, 500);
       });
       
       // Log script errors

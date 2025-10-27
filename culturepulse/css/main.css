@@ -9,17 +9,11 @@
 /* Import Components */
 @import './components/trend-card.css';
 @import './components/stats.css';
-@import './components/heatmap.css';
 @import './components/modal.css';
 @import './components/data-viz.css';
-@import './components/dashboard-v2.css';
-@import './components/power-bi-components.css';
 @import './components/charts.css';
-@import './components/visual-dashboard.css';
 @import './components/category-pills.css';
 @import './components/heatmap-improved.css';
-@import './components/notion-dashboard.css';
-@import './components/notion-cards.css';
 @import './components/metrics-viz.css';
 @import './components/metric-details.css';
 @import './components/top-trends-chart.css';
@@ -27,7 +21,6 @@
 @import './components/brand-fit-enhanced.css';
 @import './components/source-pills.css';
 @import './components/reports.css';
-@import './components/trend-heatmap.css';
 
 /* ============================================
    CSS RESET / NORMALIZE
@@ -53,8 +46,9 @@ body {
   font-size: var(--text-base);
   line-height: var(--leading-normal);
   color: var(--text-primary);
-  background-color: #ffffff;
+  background-color: #0a0a0a;
   min-height: 100vh;
+  position: relative;
 }
 
 /* Remove default button and input styling */
@@ -158,7 +152,7 @@ p {
   top: 0;
   z-index: var(--z-sticky);
   height: 72px;
-  background-color: var(--bg-elevated);
+  background-color: rgba(30, 41, 59, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-subtle);
@@ -185,11 +179,12 @@ p {
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  background: var(--pulse-primary);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #f8fafc;
   font-weight: var(--weight-bold);
   font-size: var(--text-base);
 }
@@ -209,19 +204,19 @@ p {
   padding: var(--space-2) var(--space-4);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
-  color: var(--text-tertiary);
+  color: rgba(255, 255, 255, 0.7);
   transition: all var(--transition-base);
   border-radius: var(--radius-md);
 }
 
 .nav-link:hover {
-  color: var(--text-primary);
-  background-color: var(--bg-overlay);
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .nav-link.active {
-  color: var(--text-primary);
-  background-color: var(--bg-overlay);
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .header__actions {
@@ -233,24 +228,24 @@ p {
 .search-bar {
   width: 320px;
   padding: var(--space-3) var(--space-4);
-  background-color: var(--bg-overlay);
-  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-lg);
-  color: var(--text-primary);
+  color: #f8fafc;
   font-size: var(--text-sm);
   transition: all var(--transition-base);
   position: relative;
 }
 
 .search-bar::placeholder {
-  color: var(--text-tertiary);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .search-bar:focus {
   outline: none;
-  border-color: var(--pulse-primary);
-  box-shadow: 0 0 0 3px var(--border-focus);
-  background-color: var(--bg-elevated);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .user-menu {
@@ -270,8 +265,8 @@ p {
   width: 32px;
   height: 32px;
   border-radius: var(--radius-full);
-  background-color: var(--pulse-primary);
-  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  color: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -288,13 +283,26 @@ p {
    MAIN CONTENT AREA
    ============================================ */
 
+/* Vanta animated background container */
+#vanta-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #0a0a0a;
+}
+
 body {
-  background-color: #ffffff !important;
+  background-color: #0a0a0a !important;
 }
 
 .main {
   padding: var(--space-8) 0;
-  background-color: #ffffff;
+  background-color: transparent;
+  position: relative;
+  z-index: 1;
 }
 
 /* ============================================
@@ -315,9 +323,10 @@ body {
 }
 
 .stat-card {
-  background-color: var(--bg-elevated);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-lg);
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
   padding: var(--space-6);
   transition: all var(--transition-slow);
   position: relative;
@@ -450,7 +459,7 @@ body {
 .section-title {
   font-size: var(--text-2xl);
   font-weight: var(--weight-bold);
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: var(--space-6);
   letter-spacing: -0.01em;
 }
@@ -550,6 +559,16 @@ body {
   gap: var(--space-6);
 }
 
+.trends-empty {
+  grid-column: 1 / -1;
+  padding: var(--space-8);
+  text-align: center;
+  color: var(--text-secondary);
+  background-color: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+}
+
 .trend-card {
   background-color: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
@@ -564,8 +583,9 @@ body {
 
 .trend-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-  border-color: var(--pulse-primary);
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .trend-card__header {
@@ -686,6 +706,9 @@ body {
   margin-top: var(--space-16);
   padding: var(--space-8) 0;
   border-top: 1px solid var(--border-subtle);
+  background-color: transparent;
+  position: relative;
+  z-index: 1;
 }
 
 .footer__container {
@@ -770,11 +793,11 @@ body {
   
   .main {
     padding: var(--space-6) 0;
-    background-color: #ffffff;
+    background-color: transparent;
   }
 
   body {
-    background-color: #ffffff !important;
+    background-color: #0a0a0a !important;
   }
   
   .footer__content {
@@ -829,11 +852,11 @@ body {
 .empty-state h2 {
   font-size: var(--text-2xl);
   margin-bottom: var(--space-2);
-  color: var(--text-primary);
+  color: #f8fafc;
 }
 
 .empty-state p {
-  color: var(--text-tertiary);
+  color: #e2e8f0;
   max-width: 500px;
   margin: 0 auto;
 }
@@ -841,14 +864,14 @@ body {
 .settings-section {
   margin-bottom: var(--space-6);
   padding: var(--space-6);
-  background-color: var(--bg-elevated);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .settings-section h3 {
   font-size: var(--text-lg);
   margin-bottom: var(--space-2);
-  color: var(--text-primary);
+  color: #f8fafc;
 }
 

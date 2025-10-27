@@ -17,7 +17,7 @@
 .heatmap-title {
   font-size: 14px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: var(--space-4);
@@ -32,12 +32,13 @@
 
 .category-pill {
   padding: var(--space-2) var(--space-4);
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-full);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
-  color: #374151;
+  color: #e2e8f0;
   cursor: pointer;
   transition: all 0.15s ease;
   display: inline-flex;
@@ -46,10 +47,10 @@
 }
 
 .category-pill:hover {
-  background: white;
-  border-color: #d1d5db;
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .category-pill {
@@ -65,8 +66,8 @@
 }
 
 .category-pill--active {
-  background: #3b82f6;
-  border-color: #3b82f6;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
   color: white;
   font-weight: var(--weight-semibold);
 }
@@ -96,7 +97,7 @@
 }
 
 .btn-show-more:hover {
-  background: #f9fafb;
+  background: var(--bg-overlay);
   border-color: #d1d5db;
 }
 
