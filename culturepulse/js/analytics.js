@@ -45,9 +45,10 @@ if (typeof window !== 'undefined') {
 
   // Track report generations
   window.addEventListener('report:generated', (event) => {
+    const detail = event.detail || {};
     window.trackCulturePulseEvent('report_generated', {
-      period: event.detail.period,
-      trendsCount: event.detail.trendsCount
+      period: detail.period,
+      trendsCount: detail.trendsCount
     });
   });
 
