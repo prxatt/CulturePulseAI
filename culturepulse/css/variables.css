@@ -51,7 +51,7 @@
      ============================================ */
   
   --text-primary: #f1f5f9;         /* Headings, key information */
-  --text-secondary: #cbd5e1;       /* Body text, descriptions */
+  --text-secondary: #e2e8f0;       /* Body text, descriptions */
   --text-tertiary: #cbd5e1;         /* Metadata, labels, timestamps */
   --text-disabled: #64748b;         /* Inactive elements, disabled states */
   --text-inverse: #0f172a;          /* Text on light backgrounds */
