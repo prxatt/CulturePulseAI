@@ -357,7 +357,8 @@ export class DataCollector {
    * @returns {Promise<Array>} Twitter trends
    */
   async collectTwitterTrends() {
-    const keywords = ['technology', 'Tesla', 'Apple', 'BMW', 'fashion', 'food', 'coffee'];
+    // Jack Morton client-focused keywords
+    const keywords = ['technology', 'Tesla', 'Apple', 'BMW', 'Mercedes', 'Ford', 'Microsoft', 'Google', 'Nike'];
     const trends = [];
     
     for (const keyword of keywords) {
@@ -403,7 +404,8 @@ export class DataCollector {
    * @returns {Promise<Array>} Google Trends data
    */
   async collectGoogleTrendsData() {
-    const keywords = ['Tesla', 'Apple', 'BMW', 'fashion trends', 'coffee trends'];
+    // Jack Morton client-focused trends
+    const keywords = ['Tesla', 'Apple', 'BMW', 'Mercedes', 'Ford', 'Microsoft', 'experiential marketing', 'brand activation'];
     const trends = [];
     
     for (const keyword of keywords) {
@@ -447,11 +449,14 @@ export class DataCollector {
    */
   categorizeKeyword(keyword) {
     const kw = keyword.toLowerCase();
-    if (kw.includes('apple') || kw.includes('tech')) return 'Tech';
-    if (kw.includes('tesla') || kw.includes('bmw') || kw.includes('car')) return 'Automotive';
-    if (kw.includes('fashion')) return 'Fashion';
-    if (kw.includes('food') || kw.includes('coffee')) return 'Food & Beverage';
-    if (kw.includes('finance') || kw.includes('invest')) return 'Finance';
+    // Jack Morton client categories
+    if (kw.includes('apple') || kw.includes('tech') || kw.includes('microsoft') || kw.includes('google')) return 'Tech';
+    if (kw.includes('tesla') || kw.includes('bmw') || kw.includes('mercedes') || kw.includes('ford') || kw.includes('car')) return 'Automotive';
+    if (kw.includes('fashion') || kw.includes('sneakers') || kw.includes('nike')) return 'Fashion & Retail';
+    if (kw.includes('food') || kw.includes('coffee') || kw.includes('restaurant')) return 'Food & Beverage';
+    if (kw.includes('festival') || kw.includes('concert') || kw.includes('event')) return 'Events & Entertainment';
+    if (kw.includes('finance') || kw.includes('banking')) return 'Finance';
+    if (kw.includes('marketing') || kw.includes('branding') || kw.includes('experiential')) return 'Marketing';
     return 'General';
   }
 
