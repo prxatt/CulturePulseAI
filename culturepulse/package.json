@@ -1,8 +1,8 @@
 {
-  "name": "counterpulse",
+  "name": "culturepulseai",
   "version": "1.0.0",
   "type": "module",
-  "description": "CounterPulse - Cultural Intelligence Dashboard for Jack Morton",
+  "description": "CulturePulse AI - Cultural Intelligence Dashboard for Jack Morton",
   "scripts": {
     "start": "echo 'This is a static site - no build required'"
   },

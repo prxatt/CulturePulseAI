@@ -1,4 +1,4 @@
-# CounterPulse Access Control
+# CulturePulse AI Access Control
 
 ## Current Access Status
 - **Public Access**: Currently open for demo/presentation purposes
@@ -15,7 +15,7 @@ Add this to `index.html` before the body tag:
 ```html
 <script>
   const ACCESS_KEY = 'jackmorton2025';
-  const providedKey = prompt('Enter CounterPulse access key:');
+  const providedKey = prompt('Enter CulturePulse AI access key:');
   if (providedKey !== ACCESS_KEY) {
     document.body.innerHTML = '<h1>Access Denied</h1>';
     throw new Error('Invalid access key');

@@ -1,5 +1,5 @@
 /**
- * COUNTERPULSE - JACK MORTON CLIENT TRENDS
+ * CULTUREPULSE AI - JACK MORTON CLIENT TRENDS
  * Cultural intelligence trends curated for Jack Morton clients
  * Focused on Meta, tech companies, and major corporate brands
  * Applying experiential activations for Jack Morton opportunities
