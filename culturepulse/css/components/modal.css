@@ -92,7 +92,7 @@
 .modal-body p,
 .modal-body li,
 .modal-body span {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
   line-height: 1.7;
 }
 
