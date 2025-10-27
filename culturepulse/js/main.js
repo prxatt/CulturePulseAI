@@ -34,6 +34,9 @@ class CulturePulseApp {
     };
     this.heatMapData = {};
     this.isInitialized = false;
+    this.trendsDisplayed = 0;
+    this.maxInitialTrends = 9;
+    this.incrementSize = 5;
   }
 
   /**
@@ -45,9 +48,15 @@ class CulturePulseApp {
     try {
       console.log('Initializing CulturePulse AI...');
       
+      // Start loading progress animation
+      this.animateLoadingProgress();
+      
       // Load data (this now loads sample data immediately)
       await this.loadData();
       console.log('Data loaded, trends count:', this.trends.length);
+      
+      // Initialize to show 9 trends
+      this.trendsDisplayed = this.maxInitialTrends;
       
       this.calculateStats();
       console.log('Stats calculated:', this.stats);
@@ -69,6 +78,27 @@ class CulturePulseApp {
       console.error('Error initializing CulturePulse AI:', error);
       console.error('Stack:', error.stack);
     }
+  }
+
+  /**
+   * Animate loading progress bar from 0 to 100 over 30 seconds
+   */
+  animateLoadingProgress() {
+    let progress = 0;
+    const duration = 30000; // 30 seconds
+    const interval = 50; // Update every 50ms for smooth animation
+    const increment = (100 / duration) * interval;
+    
+    const updateProgress = () => {
+      progress = Math.min(progress + increment, 100);
+      this.showLoadingProgress(Math.round(progress));
+      
+      if (progress < 100) {
+        setTimeout(updateProgress, interval);
+      }
+    };
+    
+    updateProgress();
   }
 
   /**
@@ -614,11 +644,16 @@ class CulturePulseApp {
 
   /**
    * Render trend grid with cards
+   * Now shows 9 trends initially, then allows "See More"
    */
   renderTrendGrid() {
     const container = document.getElementById('trends-grid');
     if (!container) return;
 
+    // Calculate how many trends to show
+    const displayCount = Math.min(this.trendsDisplayed, this.filteredTrends.length);
+    const trendsToShow = this.filteredTrends.slice(0, displayCount);
+    
     container.innerHTML = '';
     const countEl = document.getElementById('trends-count');
     
@@ -629,15 +664,18 @@ class CulturePulseApp {
         </div>
       `;
       if (countEl) countEl.textContent = '0 trends';
+      // Hide loading and see more
+      this.hideLoadingProgress();
+      this.hideSeeMore();
       return;
     }
 
-    // Render each trend card
-    this.filteredTrends.forEach((trend, index) => {
+    // Render trend cards (only show up to displayCount)
+    trendsToShow.forEach((trend, index) => {
       const trendCard = new TrendCard(trend, container);
       
-      // Add animation with delay
-      if (typeof gsap !== 'undefined' && index === 0) {
+      // Add animation with delay for first batch
+      if (typeof gsap !== 'undefined' && index === 0 && this.trendsDisplayed <= this.maxInitialTrends) {
         gsap.from('.trend-card', {
           opacity: 0,
           y: 30,
@@ -649,8 +687,84 @@ class CulturePulseApp {
     });
 
     if (countEl) {
-      countEl.textContent = `${this.filteredTrends.length} ${this.filteredTrends.length === 1 ? 'trend' : 'trends'}`;
+      countEl.textContent = `${trendsToShow.length} of ${this.filteredTrends.length} trends`;
     }
+
+    // Show/hide "See More" button
+    if (displayCount < this.filteredTrends.length) {
+      this.showSeeMore();
+    } else {
+      this.hideSeeMore();
+    }
+  }
+
+  /**
+   * Show loading progress bar
+   */
+  showLoadingProgress(progress) {
+    const container = document.getElementById('loading-progress-container');
+    const fill = document.getElementById('loading-bar-fill');
+    const text = document.getElementById('loading-text');
+    
+    if (container && fill && text) {
+      container.style.display = 'block';
+      fill.style.width = `${progress}%`;
+      
+      if (progress < 100) {
+        text.textContent = `Loading trends... ${progress}%`;
+      } else {
+        text.textContent = 'Trends loaded!';
+        // Hide after 1 second
+        setTimeout(() => {
+          this.hideLoadingProgress();
+        }, 1000);
+      }
+    }
+  }
+
+  /**
+   * Hide loading progress bar
+   */
+  hideLoadingProgress() {
+    const container = document.getElementById('loading-progress-container');
+    if (container) {
+      container.style.display = 'none';
+    }
+  }
+
+  /**
+   * Show "See More" button
+   */
+  showSeeMore() {
+    const container = document.getElementById('see-more-container');
+    if (container) {
+      container.style.display = 'flex';
+      
+      // Update button text with remaining count
+      const remaining = Math.min(this.incrementSize, this.filteredTrends.length - this.trendsDisplayed);
+      const countEl = container.querySelector('.btn-see-more__count');
+      if (countEl) {
+        countEl.textContent = `(${remaining} more)`;
+      }
+    }
+  }
+
+  /**
+   * Hide "See More" button
+   */
+  hideSeeMore() {
+    const container = document.getElementById('see-more-container');
+    if (container) {
+      container.style.display = 'none';
+    }
+  }
+
+  /**
+   * Load more trends (called when "See More" is clicked)
+   */
+  loadMoreTrends() {
+    this.trendsDisplayed += this.incrementSize;
+    this.renderTrendGrid();
   }
 
   /**
@@ -663,6 +777,7 @@ class CulturePulseApp {
     this.setupModalEvents();
     this.setupKeyboardShortcuts();
     this.setupNavigation();
+    this.setupSeeMoreButton();
     
     // Listen for trend save events
     window.addEventListener('trendSaved', () => {
@@ -672,6 +787,18 @@ class CulturePulseApp {
         this.loadSavedTrends();
       }
     });
+  }
+
+  /**
+   * Setup "See More" button event listener
+   */
+  setupSeeMoreButton() {
+    const btnSeeMore = document.getElementById('btn-see-more');
+    if (btnSeeMore) {
+      btnSeeMore.addEventListener('click', () => {
+        this.loadMoreTrends();
+      });
+    }
   }
   
   /**
