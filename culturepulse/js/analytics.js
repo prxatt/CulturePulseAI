@@ -3,7 +3,7 @@
  * Tracks page views and user interactions
  */
 
-import { injectSpeedInsights, inject } from '@vercel/analytics';
+import { inject } from '@vercel/analytics';
 
 // Initialize Vercel Analytics
 // This will automatically track page views and route changes
