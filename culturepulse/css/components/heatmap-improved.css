@@ -13,12 +13,12 @@
 .category-pill {
   padding: 10px 16px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #e5e7eb;
-  border-left: 3px solid #6b7280; /* Default color, will be overridden by inline styles */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 3px solid rgba(255, 255, 255, 0.4);
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
-  color: #374151;
+  color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
@@ -29,10 +29,11 @@
 }
 
 .category-pill:hover {
-  background: var(--bg-overlay);
-  border-color: #d1d5db;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  color: #ffffff;
 }
 
 .category-pill--active {
@@ -52,13 +53,14 @@
 }
 
 .category-pill__count {
-  background: #e5e7eb;
+  background: rgba(255, 255, 255, 0.15);
   padding: 3px 10px;
   border-radius: 12px;
   font-size: 12px;
   font-weight: 700;
   font-family: 'Inter', -apple-system, sans-serif;
   line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .category-pill--active .category-pill__count {

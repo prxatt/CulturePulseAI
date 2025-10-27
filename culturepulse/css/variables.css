@@ -32,28 +32,28 @@
   --trend-explosive: #ef4444;      /* Red - 300%+ growth */
   --trend-hot: #f59e0b;            /* Orange - 150-300% */
   --trend-rising: #10b981;          /* Green - 50-150% */
-  --trend-stable: #6b7280;         /* Gray - <50% */
-  --trend-declining: #64748b;       /* Slate - Negative */
+  --trend-stable: rgba(255, 255, 255, 0.5);         /* White - <50% */
+  --trend-declining: #ef4444;       /* Red - Negative */
   
   /* ============================================
      BACKGROUND LAYER SYSTEM
      Layered background colors for depth
      ============================================ */
   
-  --bg-base: #0f172a;               /* Dark navy base - body background */
-  --bg-elevated: #1e293b;          /* Card surfaces, panels */
-  --bg-overlay: #334155;            /* Modal backgrounds, tooltips */
-  --bg-hover: #475569;              /* Hover states for interactive elements */
+  --bg-base: #0a0a0a;               /* Pure black base - body background */
+  --bg-elevated: rgba(255, 255, 255, 0.05);          /* Card surfaces, panels */
+  --bg-overlay: rgba(255, 255, 255, 0.08);            /* Modal backgrounds, tooltips */
+  --bg-hover: rgba(255, 255, 255, 0.12);              /* Hover states for interactive elements */
   
   /* ============================================
      TEXT HIERARCHY SYSTEM
      Color system for typography
      ============================================ */
   
-  --text-primary: #f1f5f9;         /* Headings, key information */
-  --text-secondary: #e2e8f0;       /* Body text, descriptions */
-  --text-tertiary: #cbd5e1;         /* Metadata, labels, timestamps */
-  --text-disabled: #64748b;         /* Inactive elements, disabled states */
+  --text-primary: #ffffff;         /* Headings, key information */
+  --text-secondary: rgba(255, 255, 255, 0.85);       /* Body text, descriptions */
+  --text-tertiary: rgba(255, 255, 255, 0.65);         /* Metadata, labels, timestamps */
+  --text-disabled: rgba(255, 255, 255, 0.4);         /* Inactive elements, disabled states */
   --text-inverse: #0f172a;          /* Text on light backgrounds */
   
   /* ============================================
@@ -61,9 +61,9 @@
      Semi-transparent borders for subtle depth
      ============================================ */
   
-  --border-subtle: rgba(148, 163, 184, 0.1);
-  --border-default: rgba(148, 163, 184, 0.2);
-  --border-strong: rgba(148, 163, 184, 0.3);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-default: rgba(255, 255, 255, 0.15);
+  --border-strong: rgba(255, 255, 255, 0.25);
   --border-focus: rgba(255, 255, 255, 0.3);      /* Focus ring color */
   
   /* ============================================

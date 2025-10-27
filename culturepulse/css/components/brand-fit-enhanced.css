@@ -10,7 +10,7 @@
 .brand-fit-section__title {
   font-size: 18px;
   font-weight: 600;
-  color: #f8fafc;
+  color: #ffffff;
   margin-bottom: var(--space-6);
   text-transform: none;
   letter-spacing: 0;
@@ -24,14 +24,14 @@
 
 .brand-fit-card {
   background: rgba(255, 255, 255, 0.05);
-  border: 2px solid #e5e7eb;
+  border: 2px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
   padding: var(--space-6);
   transition: all 200ms ease;
 }
 
 .brand-fit-card:hover {
-  border-color: #d1d5db;
+  border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
@@ -99,7 +99,7 @@
 .brand-fit-title {
   font-size: 15px;
   font-weight: 600;
-  color: #f8fafc;
+  color: #ffffff;
 }
 
 .brand-fit-brands {
@@ -111,12 +111,12 @@
 .brand-tag {
   display: inline-block;
   padding: 6px 12px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 6px;
   font-size: 13px;
   font-weight: 500;
-  color: #e2e8f0;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .brand-fit-card--perfect .brand-tag {
