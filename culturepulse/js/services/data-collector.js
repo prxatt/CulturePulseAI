@@ -1,7 +1,8 @@
 /**
  * Data Collector Service
  * Integrates with Reddit, Google Trends, and Twitter APIs
- * Implements $0 budget strategy
+ * Optimized for Jack Morton Worldwide client verticals
+ * Implements $0 budget strategy with intelligent caching
  */
 
 export class DataCollector {
@@ -10,6 +11,13 @@ export class DataCollector {
     this.googleTrendsEndpoint = '/api/trends';
     this.twitterEndpoint = '/api/twitter';
     this.isInitialized = false;
+    
+    // Cache for recent fetches to avoid redundancy
+    this.fetchCache = new Map();
+    this.cacheExpiry = 5 * 60 * 1000; // 5 minutes
+    
+    // Track processed subreddits to avoid duplicates
+    this.processedSubreddits = new Set();
     
     // Dynamic backend URL - works locally and on Vercel
     this.backendUrl = window.location.hostname === 'localhost' 
@@ -281,59 +289,82 @@ export class DataCollector {
 
   /**
    * Collect trends from Reddit only
+   * Optimized for Jack Morton clients with intelligent deduplication
    * @returns {Promise<Array>} Reddit trends
    */
   async collectRedditTrends() {
-    // Focused on Jack Morton experiential marketing client verticals
+    // Jack Morton client-focused subreddits (deduplicated and prioritized)
     const businessSubreddits = [
-      // Tech & Innovation (Apple, Microsoft, Google, etc.)
+      // Tech & Innovation (Meta, Microsoft, Google, Apple)
       'technology', 'apple', 'MicrosoftTeams', 'google',
       'futurology', 'MachineLearning', 'artificial',
       
-      // Automotive (BMW, Mercedes, Ford, Tesla, etc.)
-      'TeslaModel3', 'TeslaLounge', 'BMW', 'MercedesBenz',
-      'ford', 'cars', 'automotive', 'electricvehicle',
+      // Automotive (BMW, Mercedes, Tesla, Ford)
+      'TeslaModel3', 'TeslaLounge', 'BMW', 'cars', 
+      'electricvehicle', 'automotive',
       
-      // Consumer Brands & Lifestyle
-      'shopping', 'deals', 'product', 'fashion',
-      'sneakers', 'watches', 'streetwear',
-      
-      // Events & Experiences
-      'festivals', 'concerts', 'liveevents', 'lasvegas',
-      'sports', 'basketball', 'football',
+      // Events & Employee Culture
+      'festivals', 'concerts', 'liveevents',
       
       // Marketing & Branding
       'Marketing', 'advertising', 'branding',
-      'socialmedia', 'productivity'
+      'socialmedia', 'remote work', 'workplace culture'
     ];
 
-    console.log(`Monitoring ${businessSubreddits.length} subreddits...`);
+    console.log(`Monitoring ${businessSubreddits.length} subreddits (deduplicated)...`);
     
     const allTrends = [];
     let successCount = 0;
     let errorCount = 0;
 
-    // Fetch in smaller batches with longer delays to avoid rate limiting
-    const batchSize = 5; // Reduced from 10 to avoid 429 errors
-    const delayBetweenRequests = 500; // 500ms between requests
+    // Use cache to avoid redundant fetches
+    const fetchWithCache = async (subreddit, limit) => {
+      const cacheKey = `${subreddit}_${limit}_${Date.now() - (Date.now() % this.cacheExpiry)}`;
+      
+      if (this.fetchCache.has(cacheKey)) {
+        console.log(`✓ Using cached data for r/${subreddit}`);
+        return this.fetchCache.get(cacheKey);
+      }
+      
+      const result = await this.fetchRedditData(subreddit, limit);
+      this.fetchCache.set(cacheKey, result);
+      
+      // Clean up old cache entries
+      if (this.fetchCache.size > 50) {
+        const firstKey = this.fetchCache.keys().next().value;
+        this.fetchCache.delete(firstKey);
+      }
+      
+      return result;
+    };
+
+    // Fetch in smaller batches with delays to avoid rate limiting
+    const batchSize = 3; // Smaller batches to be more gentle
+    const delayBetweenRequests = 800; // 800ms between requests
     
     for (let i = 0; i < businessSubreddits.length; i += batchSize) {
       const batch = businessSubreddits.slice(i, i + batchSize);
       
-      // Process sequentially (not parallel) to avoid rate limits
+      // Process sequentially to avoid rate limits
       for (const subreddit of batch) {
         try {
-          const posts = await this.fetchRedditData(subreddit, 15);
+          // Skip if already processed in this session
+          if (this.processedSubreddits.has(subreddit)) {
+            continue;
+          }
+          
+          const posts = await fetchWithCache(subreddit, 10);
+          this.processedSubreddits.add(subreddit);
           
           const trends = posts.map(post => this.transformToTrend(post, subreddit));
           allTrends.push(...trends);
           successCount++;
           
-          if (successCount % 5 === 0) {
+          if (successCount % 3 === 0) {
             console.log(`✓ Processed ${successCount}/${businessSubreddits.length} subreddits...`);
           }
           
-          // Delay between each subreddit
+          // Delay between requests
           await new Promise(resolve => setTimeout(resolve, delayBetweenRequests));
         } catch (error) {
           errorCount++;
@@ -346,17 +377,21 @@ export class DataCollector {
       
       // Longer delay between batches
       if (i + batchSize < businessSubreddits.length) {
-        console.log(`⏸ Pausing 3 seconds before next batch...`);
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        console.log(`⏸ Pausing 2 seconds before next batch...`);
+        await new Promise(resolve => setTimeout(resolve, 2000));
       }
     }
 
     console.log(`✓ Completed: ${successCount} successful, ${errorCount} errors, ${allTrends.length} total trends`);
 
-    // Sort by engagement (score + comments)
-    allTrends.sort((a, b) => (b.engagement || 0) - (a.engagement || 0));
+    // Sort by engagement and timestamp (newer trends first)
+    allTrends.sort((a, b) => {
+      // First by engagement
+      if (b.engagement !== a.engagement) return b.engagement - a.engagement;
+      // Then by recency
+      return (b.timestamp || 0) - (a.timestamp || 0);
+    });
 
-    // Return all Reddit trends (will be merged with others)
     return allTrends;
   }
 

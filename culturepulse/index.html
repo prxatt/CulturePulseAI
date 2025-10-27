@@ -303,6 +303,12 @@
     
     <!-- Main application script -->
     <script type="module" src="js/main.js"></script>
+    
+    <!-- Vercel Analytics -->
+    <script>
+      import { Analytics } from "@vercel/analytics";
+      Analytics.trackPageview();
+    </script>
 </body>
 </html>
 

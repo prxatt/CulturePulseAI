@@ -5,11 +5,13 @@
  */
 
 import { SAMPLE_TRENDS } from './data/trends-sample.js';
+import JACK_MORTON_PROFILE from './data/jack-morton-profile.js';
 import TrendCard from './components/TrendCard.js';
 import Modal from './components/Modal.js';
 import { errorHandler } from './utils/error-handler.js';
 import { DataValidator } from './utils/data-validator.js';
 import { dataCollector } from './services/data-collector.js';
+import './analytics.js';
 
 class CulturePulseApp {
   constructor() {
@@ -223,12 +225,36 @@ class CulturePulseApp {
 
   /**
    * Calculate dashboard statistics
+   * FIXED: Properly differentiates Active vs Emerging trends based on time windows
    */
   calculateStats() {
     this.stats.totalTrends = this.trends.length;
     
-    // Calculate emerging trends (last 72 hours) - using velocity > 150 as proxy
-    this.stats.emerging72h = this.trends.filter(t => t.velocityScore > 150).length;
+    // Calculate ACTIVE trends (current engagement from last 7 days)
+    const now = Date.now();
+    const sevenDaysAgo = now - (7 * 24 * 60 * 60 * 1000);
+    
+    // Active trends: High engagement from last 7 days
+    const activeTrends = this.trends.filter(t => {
+      const timestamp = t.timestamp || 0;
+      return timestamp >= sevenDaysAgo && (t.engagement || 0) > 100;
+    });
+    
+    // Calculate EMERGING trends (significant growth in last 72 hours)
+    const seventyTwoHoursAgo = now - (72 * 60 * 60 * 1000);
+    
+    // Emerging trends: New content from last 72h with rising velocity
+    const emergingTrends = this.trends.filter(t => {
+      const timestamp = t.timestamp || 0;
+      const isRecent = timestamp >= seventyTwoHoursAgo;
+      const hasVelocity = (t.velocityScore || 0) > 0;
+      const isNewerThanWeek = timestamp > sevenDaysAgo;
+      
+      // Emerging = recent AND showing growth patterns
+      return isRecent && hasVelocity && isNewerThanWeek;
+    });
+    
+    this.stats.emerging72h = emergingTrends.length;
     
     // Calculate average confidence as accuracy
     const avgConfidence = this.trends.reduce((sum, t) => sum + (t.confidence || 85), 0) / this.trends.length;
@@ -239,6 +265,10 @@ class CulturePulseApp {
       return total + trend.sources.reduce((sum, source) => sum + source.mentions, 0);
     }, 0);
     this.stats.dataPoints = (this.stats.dataPoints / 1000000).toFixed(1) + 'M';
+    
+    // Store for later use in metric details
+    this.activeTrends = activeTrends;
+    this.emergingTrends = emergingTrends;
   }
 
   /**
@@ -1501,29 +1531,47 @@ class CulturePulseApp {
    * @param {string} metric - Metric type
    */
   getMetricDetailData(metric) {
-    // Get top 5 trends by velocity (only for trends metric)
+    // Get top 5 ACTIVE trends (last 7 days with high engagement)
     let topTrends = [];
     console.log('getMetricDetailData called for:', metric);
     console.log('this.trends length:', this.trends ? this.trends.length : 0);
     
-    if (metric === 'trends' && this.trends && this.trends.length > 0) {
-      topTrends = this.trends
+    if (metric === 'trends') {
+      // Use stored activeTrends (from calculateStats) or calculate on demand
+      const activeTrends = this.activeTrends || this.trends.filter(t => {
+        const now = Date.now();
+        const sevenDaysAgo = now - (7 * 24 * 60 * 60 * 1000);
+        const timestamp = t.timestamp || 0;
+        return timestamp >= sevenDaysAgo && (t.engagement || 0) > 100;
+      });
+      
+      topTrends = activeTrends
         .filter(t => t && t.velocityScore !== undefined)
-        .sort((a, b) => b.velocityScore - a.velocityScore)
+        .sort((a, b) => (b.velocityScore || 0) - (a.velocityScore || 0))
         .slice(0, 5);
-      console.log('Top trends found:', topTrends.length);
+      console.log('Active trends (last 7 days):', topTrends.length);
       console.log('Top trends data:', topTrends);
     }
     
-    // Get top 5 emerging trends (for emerging metric)
+    // Get top 5 EMERGING trends (last 72 hours) - FIXED with proper time-based filtering
     let emergingTrends = [];
-    if (metric === 'emerging' && this.trends && this.trends.length > 0) {
-      // Get trends with high velocity and recent timestamps (proxy for emerging)
-      emergingTrends = this.trends
-        .filter(t => t && t.velocityScore !== undefined && t.velocityScore > 200)
-        .sort((a, b) => b.velocityScore - a.velocityScore)
+    if (metric === 'emerging') {
+      // Use stored emergingTrends (from calculateStats) or calculate on demand
+      const calculatedEmerging = this.emergingTrends || this.trends.filter(t => {
+        const now = Date.now();
+        const seventyTwoHoursAgo = now - (72 * 60 * 60 * 1000);
+        const sevenDaysAgo = now - (7 * 24 * 60 * 60 * 1000);
+        const timestamp = t.timestamp || 0;
+        const isRecent = timestamp >= seventyTwoHoursAgo;
+        const hasVelocity = (t.velocityScore || 0) > 0;
+        const isNewerThanWeek = timestamp > sevenDaysAgo;
+        return isRecent && hasVelocity && isNewerThanWeek;
+      });
+      
+      emergingTrends = calculatedEmerging
+        .sort((a, b) => (b.velocityScore || 0) - (a.velocityScore || 0))
         .slice(0, 5);
-      console.log('Emerging trends found:', emergingTrends.length);
+      console.log('Emerging trends (last 72h):', emergingTrends.length);
     }
 
     const data = {
