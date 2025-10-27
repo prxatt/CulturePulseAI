@@ -29,9 +29,10 @@ if (typeof window !== 'undefined') {
 
   // Track trend saves
   window.addEventListener('trend:saved', (event) => {
+    const detail = event.detail || {};
     window.trackCulturePulseEvent('trend_saved', {
-      trendId: event.detail.trendId,
-      category: event.detail.category
+      trendId: detail.trendId,
+      category: detail.category
     });
   });
 
