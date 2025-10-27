@@ -51,7 +51,7 @@ if (typeof window !== 'undefined') {
     });
   });
 
-  console.log('✓ Vercel Analytics initialized for CulturePulse AI');
+  // console.log('✓ Vercel Analytics initialized for CulturePulse AI');
 }
 
 export {};
