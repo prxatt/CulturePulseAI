@@ -19,10 +19,11 @@ if (typeof window !== 'undefined') {
 
   // Track trend card views
   window.addEventListener('trend:view', (event) => {
+    const detail = event.detail || {};
     window.trackCulturePulseEvent('trend_view', {
-      trendId: event.detail.trendId,
-      category: event.detail.category,
-      source: event.detail.source
+      trendId: detail.trendId,
+      category: detail.category,
+      source: detail.source
     });
   });
 
