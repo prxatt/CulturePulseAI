@@ -37,7 +37,7 @@
 .metric-card__label {
   font-size: 13px;
   font-weight: 500;
-  color: #6b7280;
+  color: #cbd5e1;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -100,7 +100,7 @@
   gap: var(--space-2);
   font-size: 12px;
   font-weight: 600;
-  color: #6b7280;
+  color: #cbd5e1;
 }
 
 .metric-card__change--positive {
