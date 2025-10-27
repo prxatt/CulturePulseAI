@@ -3,12 +3,10 @@
  * Tracks page views and user interactions
  */
 
-import { inject } from '@vercel/analytics';
-
-// Initialize Vercel Analytics
-// This will automatically track page views and route changes
+// Initialize Vercel Analytics using CDN script
+// The Vercel Analytics script is loaded via script tag in index.html
 if (typeof window !== 'undefined') {
-  inject();
+  // Vercel Analytics is loaded via CDN, no manual inject needed
   
   // Track custom events for CulturePulse AI
   window.trackCulturePulseEvent = function(eventName, properties = {}) {

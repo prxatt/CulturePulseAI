@@ -10,7 +10,9 @@ import Modal from './components/Modal.js';
 import { errorHandler } from './utils/error-handler.js';
 import { DataValidator } from './utils/data-validator.js';
 import { dataCollector } from './services/data-collector.js';
-import './analytics.js';
+
+// Initialize analytics when DOM is ready
+import('./analytics.js');
 
 class CulturePulseApp {
   constructor() {
