@@ -17,7 +17,7 @@
 
 .lifecycle-chart__graph {
   background: var(--bg-overlay);
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 6px;
   height: 180px;
   position: relative;
@@ -48,7 +48,7 @@
   position: absolute;
   width: 1px;
   height: 120px;
-  background: #e5e7eb;
+  background: rgba(255, 255, 255, 0.15);
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
@@ -58,7 +58,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #e5e7eb;
+  background: rgba(255, 255, 255, 0.15);
   border: 2px solid white;
   transition: all 300ms ease;
   flex-shrink: 0;
@@ -76,14 +76,14 @@
 .lifecycle-phase-label {
   font-size: 7px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.2px;
   white-space: nowrap;
   padding: 1px 3px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 2px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   line-height: 1;
 }
 
@@ -159,7 +159,7 @@
 }
 
 .lifecycle-indicator--projected .lifecycle-indicator-label {
-  color: #f8fafc;
+  color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.3);
 }
@@ -190,7 +190,7 @@
 
 .lifecycle-info-item {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
   padding: var(--space-5);
 }
@@ -198,7 +198,7 @@
 .lifecycle-info-label {
   font-size: 11px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: var(--space-2);
@@ -207,12 +207,12 @@
 .lifecycle-info-value {
   font-size: 24px;
   font-weight: 700;
-  color: #f8fafc;
+  color: #ffffff;
   margin-bottom: var(--space-1);
   font-family: var(--font-mono);
 }
 
 .lifecycle-info-sub {
   font-size: 13px;
-  color: #cbd5e1;
+  color: rgba(255, 255, 255, 0.7);
 }

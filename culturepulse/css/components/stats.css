@@ -92,7 +92,7 @@
 .stat-card__label {
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
-  color: #94a3b8;
+  color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   position: relative;

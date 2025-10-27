@@ -37,7 +37,7 @@
 .metric-card__label {
   font-size: 13px;
   font-weight: 500;
-  color: #cbd5e1;
+  color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -46,7 +46,7 @@
   font-family: var(--font-mono);
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 600;
-  color: #1f2937;
+  color: #ffffff;
   line-height: 1;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .mini-chart__bar:hover {
-  background: #2563eb;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 /* Trend indicator */
@@ -100,7 +100,7 @@
   gap: var(--space-2);
   font-size: 12px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .metric-card__change--positive {

@@ -86,18 +86,18 @@
   overflow-y: auto;
   flex: 1;
   background: transparent;
-  color: #f1f5f9;
+  color: #ffffff;
 }
 
 .modal-body p,
 .modal-body li,
 .modal-body span {
-  color: #e2e8f0;
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.7;
 }
 
 .modal-body strong {
-  color: #f1f5f9;
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -105,7 +105,8 @@
 .modal-body h2,
 .modal-body h3,
 .modal-body h4 {
-  color: #f8fafc;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .modal-section {
@@ -131,19 +132,19 @@
 
 .modal-section__icon {
   font-size: var(--text-4xl);
-  color: #f8fafc;
+  color: #ffffff;
 }
 
 .modal-section__title {
   font-size: var(--text-2xl);
   font-weight: var(--weight-bold);
-  color: #f8fafc;
+  color: #ffffff;
 }
 
 .modal-section__heading {
   font-size: var(--text-xl);
   font-weight: var(--weight-bold);
-  color: #f8fafc;
+  color: #ffffff;
   margin-bottom: var(--space-4);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -179,7 +180,7 @@
   justify-content: space-between;
   margin-top: var(--space-4);
   font-size: var(--text-xs);
-  color: #cbd5e1;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .lifecycle-chart__point {
@@ -193,13 +194,13 @@
 
 .lifecycle-chart__marker {
   font-size: var(--text-2xl);
-  color: #f8fafc;
+  color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .lifecycle-chart__label {
   font-size: var(--text-xs);
-  color: #f8fafc;
+  color: #ffffff;
   font-weight: var(--weight-bold);
   margin-top: var(--space-1);
 }
@@ -217,7 +218,7 @@
 }
 
 .analysis-section__content {
-  color: #e2e8f0;
+  color: rgba(255, 255, 255, 0.9);
   line-height: var(--leading-relaxed);
 }
 
@@ -228,7 +229,7 @@
 
 .analysis-section__list li {
   padding: var(--space-2) 0;
-  color: #e2e8f0;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* Brand Fit Styles */
@@ -246,7 +247,7 @@
   padding: var(--space-3);
   border-radius: var(--radius-md);
   border-left: 3px solid;
-  color: #e2e8f0;
+  color: rgba(255, 255, 255, 0.9);
   background: rgba(255, 255, 255, 0.03);
 }
 
@@ -281,12 +282,12 @@
 .concept-card__title {
   font-size: var(--text-lg);
   font-weight: var(--weight-bold);
-  color: #f8fafc;
+  color: #ffffff;
   margin-bottom: var(--space-3);
 }
 
 .concept-card__description {
-  color: #e2e8f0;
+  color: rgba(255, 255, 255, 0.9);
   line-height: var(--leading-relaxed);
   margin-bottom: var(--space-4);
 }
@@ -300,7 +301,7 @@
 
 .concept-card__detail {
   font-size: var(--text-sm);
-  color: #e2e8f0;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .concept-card__list {
@@ -310,7 +311,7 @@
 
 .concept-card__list li {
   padding: var(--space-2) 0;
-  color: #e2e8f0;
+  color: rgba(255, 255, 255, 0.9);
   padding-left: var(--space-6);
   position: relative;
 }
@@ -319,7 +320,7 @@
   content: '→';
   position: absolute;
   left: 0;
-  color: #f8fafc;
+  color: #ffffff;
 }
 
 /* Jack Morton Applications */
@@ -335,7 +336,7 @@
 .jm-application__title {
   font-size: var(--text-lg);
   font-weight: var(--weight-bold);
-  color: #f8fafc;
+  color: #ffffff;
   margin-bottom: var(--space-4);
 }
 
@@ -346,7 +347,7 @@
 }
 
 .jm-application__detail {
-  color: #e2e8f0;
+  color: rgba(255, 255, 255, 0.9);
   padding: var(--space-2);
 }
 
