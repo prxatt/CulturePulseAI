@@ -295,6 +295,15 @@ function generateMockTwitterData(query, limit) {
   return tweets;
 }
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    timestamp: Date.now(),
+    twitterConfigured: !!process.env.TWITTER_BEARER_TOKEN 
+  });
+});
+
 // Start unified server
 app.listen(PORT, () => {
   console.log('✓ CulturePulse AI Unified Server running!');
@@ -305,6 +314,9 @@ app.listen(PORT, () => {
   
   if (!process.env.TWITTER_BEARER_TOKEN) {
     console.log(`⚠️  No TWITTER_BEARER_TOKEN - using mock Twitter data`);
+    console.log(`💡 Add TWITTER_BEARER_TOKEN environment variable for real Twitter data`);
+  } else {
+    console.log(`✓ Twitter API configured`);
   }
 });
 

@@ -7,9 +7,14 @@
 export class DataCollector {
   constructor() {
     this.redditEndpoint = 'https://www.reddit.com/r/{subreddit}/hot.json';
-    this.googleTrendsEndpoint = '/api/trends'; // Proxy endpoint needed
-    this.twitterEndpoint = '/api/twitter'; // Proxy endpoint needed
+    this.googleTrendsEndpoint = '/api/trends';
+    this.twitterEndpoint = '/api/twitter';
     this.isInitialized = false;
+    
+    // Dynamic backend URL - works locally and on Vercel
+    this.backendUrl = window.location.hostname === 'localhost' 
+      ? 'http://localhost:3000' 
+      : window.location.origin;
   }
 
   /**
@@ -50,11 +55,8 @@ export class DataCollector {
    * @returns {Promise<Array>} Trending posts
    */
   async fetchRedditData(subreddit = 'technology', limit = 25) {
-    // Try to use backend proxy
-    const proxyBaseUrl = 'http://localhost:3000';
-    
     try {
-      const response = await fetch(`${proxyBaseUrl}/api/reddit/posts`, {
+      const response = await fetch(`${this.backendUrl}/api/reddit/posts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -114,10 +116,7 @@ export class DataCollector {
    */
   async fetchGoogleTrends(query) {
     try {
-      // Use backend proxy (localhost or deployed)
-      const proxyBaseUrl = 'http://localhost:3000';
-      
-      const response = await fetch(`${proxyBaseUrl}/api/trends`, {
+      const response = await fetch(`${this.backendUrl}/api/trends`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -154,10 +153,7 @@ export class DataCollector {
    */
   async fetchTwitterData(query, limit = 10) {
     try {
-      // Use backend proxy (localhost or deployed)
-      const proxyBaseUrl = 'http://localhost:3000';
-      
-      const response = await fetch(`${proxyBaseUrl}/api/twitter/search`, {
+      const response = await fetch(`${this.backendUrl}/api/twitter/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
