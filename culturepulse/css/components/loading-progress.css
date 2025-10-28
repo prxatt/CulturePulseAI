@@ -34,7 +34,7 @@
 }
 
 /* See More Button */
-.see既能ore-container {
+.see-more-container {
   display: flex;
   justify-content: center;
   margin: var(--space-8) 0;
