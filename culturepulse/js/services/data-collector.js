@@ -11,10 +11,8 @@ export class DataCollector {
     this.twitterEndpoint = '/api/twitter';
     this.isInitialized = false;
     
-    // Dynamic backend URL - works locally and on Vercel
-    this.backendUrl = window.location.hostname === 'localhost' 
-      ? 'http://localhost:3000' 
-      : window.location.origin;
+    // Use relative paths for API calls - Vercel handles routing
+    this.backendUrl = '';
   }
 
   /**

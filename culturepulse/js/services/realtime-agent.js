@@ -5,9 +5,8 @@
 
 export class RealtimeDataAgent {
   constructor() {
-    this.backendUrl = window.location.hostname === 'localhost' 
-      ? 'http://localhost:3000' 
-      : window.location.origin;
+    // Use relative paths for API calls - Vercel handles routing
+    this.backendUrl = '';
     
     this.collectionInterval = 6 * 60 * 60 * 1000; // Collect every 6 hours
     

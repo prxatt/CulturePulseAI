@@ -1,17 +1,9 @@
 {
   "version": 2,
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "buildCommand": null,
-  "outputDirectory": "culturepulse",
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/culturepulse/api/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/culturepulse/index.html"
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
     }
   ]
 }
