@@ -713,11 +713,7 @@ class CulturePulseApp {
       if (progress < 100) {
         text.textContent = `Loading trends... ${progress}%`;
       } else {
-        text.textContent = 'Trends loaded!';
-        // Hide after 1 second
-        setTimeout(() => {
-          this.hideLoadingProgress();
-        }, 1000);
+        text.textContent = '✓ Trends loaded!';
       }
     }
   }
