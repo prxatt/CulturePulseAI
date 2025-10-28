@@ -89,8 +89,12 @@ export class RealtimeDataAgent {
       console.log(`✓ Collected: ${this.trendsData.reddit.length} Reddit, ${this.trendsData.twitter.length} Twitter, ${this.trendsData.googleTrends.length} Google Trends`);
       console.log(`✓ Total aggregated trends: ${this.trendsData.aggregated.length}`);
       
-      // Dispatch event for UI update
-      this.dispatchTrendsUpdateEvent();
+      // Dispatch event for UI update with aggregated trends
+      if (this.trendsData.aggregated.length > 0) {
+        this.dispatchTrendsUpdateEvent();
+      } else {
+        console.log('⚠️ No trends to update - all data sources empty');
+      }
       
     } catch (error) {
       this.collectionStats.errors++;
