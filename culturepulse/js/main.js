@@ -10,6 +10,7 @@ import Modal from './components/Modal.js';
 import { errorHandler } from './utils/error-handler.js';
 import { DataValidator } from './utils/data-validator.js';
 import { dataCollector } from './services/data-collector.js';
+import { realtimeAgent } from './services/realtime-agent.js';
 
 // Initialize analytics when DOM is ready
 import('./analytics.js');
@@ -54,6 +55,16 @@ class CulturePulseApp {
       // Load data (this now loads sample data immediately)
       await this.loadData();
       console.log('Data loaded, trends count:', this.trends.length);
+      
+      // Start real-time data collection agent
+      console.log('Starting real-time data collection...');
+      await realtimeAgent.start();
+      
+      // Listen for real-time trend updates
+      window.addEventListener('realtimeTrendsUpdated', (event) => {
+        console.log('Real-time trends updated:', event.detail.stats);
+        this.mergeRealtimeTrends(event.detail.trends);
+      });
       
       // Initialize to show 9 trends
       this.trendsDisplayed = this.maxInitialTrends;
@@ -2031,6 +2042,32 @@ class CulturePulseApp {
         </div>
       </div>
     `;
+  }
+
+  /**
+   * Merge real-time trends with existing trends
+   */
+  mergeRealtimeTrends(newTrends) {
+    if (!newTrends || newTrends.length === 0) return;
+    
+    console.log(`Merging ${newTrends.length} real-time trends...`);
+    
+    // Add new trends to existing trends
+    const existingIds = new Set(this.trends.map(t => t.id));
+    const uniqueNewTrends = newTrends.filter(t => !existingIds.has(t.id));
+    
+    this.trends = [...this.trends, ...uniqueNewTrends];
+    
+    // Update filtered trends
+    this.applyFilters();
+    
+    // Recalculate stats
+    this.calculateStats();
+    
+    // Update display
+    this.renderTrendGrid();
+    
+    console.log(`✓ Merged ${uniqueNewTrends.length} new trends. Total: ${this.trends.length}`);
   }
 
   /**
