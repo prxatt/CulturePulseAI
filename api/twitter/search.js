@@ -13,37 +13,60 @@ export default async function handler(req, res) {
     }
 
     const TWITTER_BEARER_TOKEN = process.env.TWITTER_BEARER_TOKEN;
+    
+    console.log('Twitter API Key present:', !!TWITTER_BEARER_TOKEN);
 
     if (!TWITTER_BEARER_TOKEN) {
+      console.log('No Twitter bearer token, using mock data');
       return res.json({
         tweets: generateMockTwitterData(query, limit),
         mock: true
       });
     }
 
-    const response = await fetch(
-      `https://api.twitter.com/2/tweets/search/recent?query=${encodeURIComponent(query)}&max_results=${limit}&tweet.fields=public_metrics,created_at,author_id&expansions=author_id`,
-      {
-        headers: {
-          'Authorization': `Bearer ${TWITTER_BEARER_TOKEN}`
+    try {
+      const response = await fetch(
+        `https://api.twitter.com/2/tweets/search/recent?query=${encodeURIComponent(query)}&max_results=${limit}&tweet.fields=public_metrics,created_at,author_id&expansions=author_id`,
+        {
+          headers: {
+            'Authorization': `Bearer ${TWITTER_BEARER_TOKEN}`
+          }
         }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        console.error(`Twitter API error ${response.status}:`, errorData);
+        
+        // Fallback to mock if API fails
+        return res.json({
+          tweets: generateMockTwitterData(query, limit),
+          mock: true,
+          error: `API returned ${response.status}`
+        });
       }
-    );
 
-    if (!response.ok) {
-      throw new Error(`Twitter API error: ${response.status}`);
+      const data = await response.json();
+      const tweets = (data.data || []).map(tweet => ({
+        id: tweet.id,
+        text: tweet.text,
+        created: tweet.created_at,
+        public_metrics: tweet.public_metrics,
+        author_id: tweet.author_id
+      }));
+
+      console.log(`Twitter API returned ${tweets.length} real tweets for "${query}"`);
+      res.json({ tweets, mock: false });
+    } catch (error) {
+      console.error('Twitter API fetch error:', error);
+      
+      // Fallback to mock on error
+      return res.json({
+        tweets: generateMockTwitterData(query, limit),
+        mock: true,
+        error: error.message
+      });
     }
-
-    const data = await response.json();
-    const tweets = (data.data || []).map(tweet => ({
-      id: tweet.id,
-      text: tweet.text,
-      created: tweet.created_at,
-      public_metrics: tweet.public_metrics,
-      author_id: tweet.author_id
-    }));
-
-    res.json({ tweets });
   } catch (error) {
     console.error('Twitter proxy error:', error);
     res.status(500).json({ error: error.message });

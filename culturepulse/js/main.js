@@ -2077,14 +2077,25 @@ class CulturePulseApp {
     // Recalculate stats
     this.calculateStats();
     
-    // Update display
-    this.renderTrendGrid();
-    
-    // Update category heatmap
-    this.renderCategoryHeatmap();
-    
-    console.log(`✓ Replaced with ${uniqueNewTrends.length} real-time trends`);
-  }
+      // Update display with animation
+      if (typeof gsap !== 'undefined' && uniqueNewTrends.length > 0) {
+        // Animate the update
+        gsap.from('.trend-card', {
+          opacity: 0,
+          y: 20,
+          duration: 0.5,
+          stagger: 0.05,
+          ease: 'power2.out'
+        });
+      }
+      
+      this.renderTrendGrid();
+      
+      // Update category heatmap
+      this.renderCategoryHeatmap();
+      
+      console.log(`✓ Replaced with ${uniqueNewTrends.length} real-time trends`);
+    }
 
   /**
    * Refresh dashboard
