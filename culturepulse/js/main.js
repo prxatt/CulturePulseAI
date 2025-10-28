@@ -56,15 +56,20 @@ class CulturePulseApp {
       await this.loadData();
       console.log('Data loaded, trends count:', this.trends.length);
       
-      // Start real-time data collection agent
-      console.log('Starting real-time data collection...');
-      await realtimeAgent.start();
-      
-      // Listen for real-time trend updates
-      window.addEventListener('realtimeTrendsUpdated', (event) => {
-        console.log('Real-time trends updated:', event.detail.stats);
-        this.mergeRealtimeTrends(event.detail.trends);
-      });
+      // Start real-time data collection agent (only if not already running)
+      if (!window.realtimeAgentRunning) {
+        console.log('Starting real-time data collection...');
+        await realtimeAgent.start();
+        window.realtimeAgentRunning = true;
+        
+        // Listen for real-time trend updates
+        window.addEventListener('realtimeTrendsUpdated', (event) => {
+          console.log('Real-time trends updated:', event.detail.stats);
+          this.mergeRealtimeTrends(event.detail.trends);
+        });
+      } else {
+        console.log('Real-time agent already running');
+      }
       
       // Initialize to show 9 trends
       this.trendsDisplayed = this.maxInitialTrends;
@@ -664,7 +669,7 @@ class CulturePulseApp {
     // Calculate how many trends to show
     const displayCount = Math.min(this.trendsDisplayed, this.filteredTrends.length);
     const trendsToShow = this.filteredTrends.slice(0, displayCount);
-    
+
     container.innerHTML = '';
     const countEl = document.getElementById('trends-count');
     

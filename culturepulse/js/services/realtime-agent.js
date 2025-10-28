@@ -9,7 +9,7 @@ export class RealtimeDataAgent {
       ? 'http://localhost:3000' 
       : window.location.origin;
     
-    this.collectionInterval = 60000; // Collect every minute
+    this.collectionInterval = 6 * 60 * 60 * 1000; // Collect every 6 hours
     
     this.trendsData = {
       reddit: [],
@@ -43,7 +43,7 @@ export class RealtimeDataAgent {
       this.collectAllSources();
     }, this.collectionInterval);
     
-    console.log('✓ Agent running - collecting every 60 seconds');
+    console.log('✓ Agent running - collecting every 6 hours');
   }
 
   /**
