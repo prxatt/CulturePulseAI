@@ -2050,18 +2050,26 @@ class CulturePulseApp {
   }
 
   /**
-   * Merge real-time trends with existing trends
+   * Merge real-time trends - REPLACE sample data with real data
    */
   mergeRealtimeTrends(newTrends) {
-    if (!newTrends || newTrends.length === 0) return;
+    if (!newTrends || newTrends.length === 0) {
+      console.log('No real-time trends to merge');
+      return;
+    }
     
-    console.log(`Merging ${newTrends.length} real-time trends...`);
+    console.log(`🔄 Replacing with ${newTrends.length} real-time trends...`);
     
-    // Add new trends to existing trends
+    // REPLACE sample trends with real trends (don't add to them)
     const existingIds = new Set(this.trends.map(t => t.id));
     const uniqueNewTrends = newTrends.filter(t => !existingIds.has(t.id));
     
-    this.trends = [...this.trends, ...uniqueNewTrends];
+    // Replace all sample trends with real-time trends
+    this.trends = uniqueNewTrends;
+    this.filteredTrends = uniqueNewTrends;
+    
+    // Reset display count
+    this.trendsDisplayed = Math.min(this.maxInitialTrends, this.trends.length);
     
     // Update filtered trends
     this.applyFilters();
@@ -2072,7 +2080,10 @@ class CulturePulseApp {
     // Update display
     this.renderTrendGrid();
     
-    console.log(`✓ Merged ${uniqueNewTrends.length} new trends. Total: ${this.trends.length}`);
+    // Update category heatmap
+    this.renderCategoryHeatmap();
+    
+    console.log(`✓ Replaced with ${uniqueNewTrends.length} real-time trends`);
   }
 
   /**
